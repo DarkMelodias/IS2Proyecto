@@ -18,6 +18,8 @@ class Interfaz(Frame):
         posicion = str(ancho_ventana) + "x" + str(alto_ventana) + "+" + str(x_ventana) + "+" + str(y_ventana)
         self.master.geometry(posicion)
 
+        self.img_header_inicio = tk.PhotoImage(file="pic/inicio_header.png")
+
         self.master.resizable(0,0)
         self.create_init()
     
@@ -47,27 +49,27 @@ class Interfaz(Frame):
                 messagebox.showerror("Registro","Registro incorrecto,usuario ya existe")
 
     def create_init(self):
-        self.master.configure(bg="white")
+        self.master.configure(bg="#90B000")
 
         inicio = Frame(self.master)
         inicio.place(x=0, y=0, width=1200,height=900)
 
-        header = Frame(inicio, bg="green")
+        header = Frame(inicio, bg="#B50900")
         header.place(x=0,y=0,height=200,width=1200)
 
-        label = Label(header, text="Inicio de Sesion",bg="white",fg="black",font=("Arial",22))
-        label.place(x=450,y=80)
+        label = Label(header, image=self.img_header_inicio,bg="#90B000",fg="black",font=("Arial",22))
+        label.place(x=0,y=0)
 
-        body = Frame(inicio, bg="blue")
+        body = Frame(inicio, bg="#f3e7cc")
         body.place(x=0,y=200,height=680,width=1200)
 
-        label = Label(body, text="Usuario",bg="white",fg="black",font=("Arial",22))
+        label = Label(body, text="Usuario",bg="#f3e7cc",fg="black",font=("Arial",22))
         label.place(x=500,y=100)
 
         etr_user = ttk.Entry(body,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
         etr_user.place(x=420,y=160)
 
-        label = Label(body, text="Contraseña",bg="white",fg="black",font=("Arial",22))
+        label = Label(body, text="Contraseña",bg="#f3e7cc",fg="black",font=("Arial",22))
         label.place(x=480,y=220)
 
         etr_pas = ttk.Entry(body,width=20,font=font.Font(family="Arial",size=18),show="*",justify=CENTER)
@@ -80,7 +82,7 @@ class Interfaz(Frame):
         registro.place(x=390,y=340,width=150,height=40)
     
     def create_register(self):
-        self.master.configure(bg="white")
+        self.master.configure(bg="#90B000")
 
         registro = Frame(self.master)
         registro.place(x=0, y=0, width=1200,height=900)
@@ -88,26 +90,26 @@ class Interfaz(Frame):
         header = Frame(registro, bg="green")
         header.place(x=0,y=0,height=200,width=1200)
 
-        label = Label(header, text="Registro",bg="white",fg="black",font=("Arial",22))
-        label.place(x=450,y=80)
+        label = Label(header, image=self.img_header_inicio,bg="#90B000",fg="black",font=("Arial",22))
+        label.place(x=0,y=0)
 
-        body = Frame(registro, bg="blue")
+        body = Frame(registro, bg="#f3e7cc")
         body.place(x=0,y=200,height=680,width=1200)
 
-        label = Label(body, text="Usuario",bg="white",fg="black",font=("Arial",22))
+        label = Label(body, text="Usuario",bg="#f3e7cc",fg="black",font=("Arial",22))
         label.place(x=500,y=60)
 
         etr_user = ttk.Entry(body,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
         etr_user.place(x=420,y=110)
 
-        label = Label(body, text="Contraseña",bg="white",fg="black",font=("Arial",22))
+        label = Label(body, text="Contraseña",bg="#f3e7cc",fg="black",font=("Arial",22))
         label.place(x=480,y=170)
 
         etr_pas = ttk.Entry(body,width=20,font=font.Font(family="Arial",size=18),show="*",justify=CENTER)
         etr_pas.place(x=420,y=230)
 
-        label = Label(body, text="Repetir Contraseña",bg="white",fg="black",font=("Arial",22))
-        label.place(x=480,y=290)
+        label = Label(body, text="Repetir Contraseña",bg="#f3e7cc",fg="black",font=("Arial",22))
+        label.place(x=425,y=290)
 
         etr_pas_re = ttk.Entry(body,width=20,font=font.Font(family="Arial",size=18),show="*",justify=CENTER)
         etr_pas_re.place(x=420,y=350)
