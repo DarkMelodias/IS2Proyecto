@@ -2,6 +2,7 @@
 ## _Ingeniera de software 2_
 
 [![Python](https://www.londonacademyofit.co.uk/blog/images/1007/python_logo_1.png)](https://www.python.org/)
+
 ![Build](https://img.shields.io/badge/build-in%20process-orange) ![Python version](https://img.shields.io/badge/python-3.10.6-blue)
 
 La reserva de laboratorios es un aplicativo realizado en python el cual busca facilitar el trabajo del administrador de los laboratorios de fisica.
