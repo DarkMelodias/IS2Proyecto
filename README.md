@@ -21,7 +21,7 @@ La reserva de laboratorios es un aplicativo realizado en python el cual busca fa
 La reserva de laboratorios utiliza unos elementos tecnicos:
 
 - [Python](https://www.python.org/) - Lenguaje de programacion usado!
-- [MySQL-Workbrench](https://www.mysql.com/products/workbench/) - Base de datos utilizado
+- [MySQL-Workbrench](https://www.mysql.com/products/workbench/) - Motor de base de datos utilizado!
 
 ## Prototipos
 
