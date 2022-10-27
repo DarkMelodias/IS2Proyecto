@@ -1,6 +1,6 @@
+from equipos import *
 from laboratorios import *
 from materiales import *
-from equipos import *
 
 # labs = Laboratorios()
 

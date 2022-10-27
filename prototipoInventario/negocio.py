@@ -1,7 +1,7 @@
-from usuarios import *
+from equipos import *
 from laboratorios import *
 from materiales import *
-from equipos import *
+from usuarios import *
 
 users = Usuarios()
 labs = Laboratorios()

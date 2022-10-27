@@ -1,11 +1,12 @@
-from tkinter import *
-from tkinter import ttk,font
 import tkinter as tk
-from usuarios import *
+from tkinter import *
+from tkinter import font, messagebox, ttk
+
 from negocio import *
-from tkinter import messagebox
+from usuarios import *
 from view_ingreso import *
 from view_ingreso import Interfaz_inicio
+
 
 class Interfaz(Frame):
     def __init__(self,master):
