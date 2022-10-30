@@ -3,7 +3,7 @@ import mysql.connector
 class Materiales:
     def __init__(self):
         #!!!!!!!!!!!!!!! importante cambiar la conexio a la base de datos
-        self.cnn = mysql.connector.connect(host="localhost", user="root", passwd="guille",database="is2proyecto") # cambiar cada que se haga un pull
+        self.cnn = mysql.connector.connect(host="localhost", user="root", passwd="samuel",database="is2proyecto") # cambiar cada que se haga un pull
     
     def __str__(self):
         datos = self.consulta_materiales()
