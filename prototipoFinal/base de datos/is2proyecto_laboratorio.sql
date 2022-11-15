@@ -36,7 +36,7 @@ CREATE TABLE `laboratorio` (
 
 LOCK TABLES `laboratorio` WRITE;
 /*!40000 ALTER TABLE `laboratorio` DISABLE KEYS */;
-INSERT INTO `laboratorio` VALUES (2,'Fisica 1',10);
+INSERT INTO `laboratorio` VALUES (2,'Fisica 1',10),(3,'Fisica 2',20);
 /*!40000 ALTER TABLE `laboratorio` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-15 21:02:01
+-- Dump completed on 2022-11-14 21:23:26

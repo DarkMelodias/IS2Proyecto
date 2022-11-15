@@ -35,7 +35,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES ('admin',_binary '÷nœ(\0Jt!ü’ÿw1¯'),('admin2',_binary '÷nœ(\0Jt!ü’ÿw1¯'),('admin3',_binary ';@x¹\ÔM\ßSU¥Tı');
+INSERT INTO `usuarios` VALUES ('admin',_binary '÷nœ(\0Jt!ü’ÿw1¯'),('admin2',_binary '÷nœ(\0Jt!ü’ÿw1¯'),('admin3',_binary ';@x¹\ÔM\ßSU¥Tı'),('samu',_binary '÷nœ(\0Jt!ü’ÿw1¯'),('samu1040',_binary '÷nœ(\0Jt!ü’ÿw1¯'),('samu4571',_binary '÷nœ(\0Jt!ü’ÿw1¯'),('samu6087',_binary '÷nœ(\0Jt!ü’ÿw1¯'),('samu647',_binary '÷nœ(\0Jt!ü’ÿw1¯'),('samu7445',_binary '÷nœ(\0Jt!ü’ÿw1¯');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-15 21:02:01
+-- Dump completed on 2022-11-14 21:23:26
