@@ -1,5 +1,6 @@
 import mysql.connector
 
+
 class Reservas:
     def __init__(self):
         #!!!!!!!!!!!!!!! importante cambiar la conexio a la base de datos
@@ -67,3 +68,15 @@ class Reservas:
             return True
         else:
             return False 
+        
+    def busqueda_entre(self,date_one,date_two):
+        cur = self.cnn.cursor(buffered=True)
+        sql = "SELECT reservas.fecha, reservas.hora,Laboratorio_num_laboratorio,laboratorio.tip_lab FROM is2proyecto.reservas,is2proyecto.laboratorio WHERE laboratorio.num_laboratorio=Laboratorio_num_laboratorio AND fecha BETWEEN '{}' AND '{}' ORDER BY reservas.fecha;".format(date_one,date_two)
+        cur.execute(sql)
+        datos = cur.fetchall()
+        if datos == None:
+            cur.close()
+            return None
+        else:
+            cur.close()
+            return datos

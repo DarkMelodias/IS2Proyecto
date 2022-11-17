@@ -144,7 +144,6 @@ def rreser(mates,equips,fecha,hora,lab):
     if reser == False:
         return False
     else:
-        print("guardo")
         return True
 
 def bsreserva():
@@ -162,3 +161,7 @@ def ereser(num):
         return False
     else:
         return True
+
+def bereserva(date_one,date_two):
+    rs = reserva.busqueda_entre(date_one,date_two)
+    return rs

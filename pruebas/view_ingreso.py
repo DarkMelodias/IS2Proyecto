@@ -59,6 +59,37 @@ class Interfaz_inicio(Frame):
         self.etr_fecha.insert(0,dater)
         self.etr_fecha.config(state=tk.DISABLED)
 
+    def obtener_fecha2(self): 
+        dat = self.cal1.get_date()
+        dat = dat.split("/")
+        dater = dat[2]+"/"+dat[1]+"/"+dat[0]
+
+        dat2 = self.cal2.get_date()
+        dat2 = dat2.split("/")
+        dater2 = dat2[2]+"/"+dat2[1]+"/"+dat2[0]
+
+        ls = []
+        ls.append(dater)
+        ls.append(dater2)
+
+        if int(dat2[2]) < int(dat[2]):
+            return False               
+        else:
+            if int(dat2[0]) < int(dat[0]):
+                if int(dat2[2]) > int(dat[2]):
+                    return ls
+                else:
+                    return False
+            if int(dat2[1]) < int(dat[1]):
+                return False
+            return ls
+
+        
+
+        
+
+        
+
     def llenaEntryMateriales(self,mat):
         gd_mat(mat)
         self.mate = self.mate+"{},".format(mat)
@@ -96,7 +127,7 @@ class Interfaz_inicio(Frame):
         if muestra == "r":
             self.create_res()
         if muestra == "c":
-            pass
+            self.calendar()
 
     def inter_lab(self,esconde,muestra):
         esconde.place_forget()
@@ -172,10 +203,100 @@ class Interfaz_inicio(Frame):
         valid =rreser(self.etr_mate.get(),self.etr_equip.get(),self.etr_fecha.get(),self.etr_hora.get(),labff)
         if valid == True:
             messagebox.showinfo("Registro","Registro correcto")
+            self.limpiar()
             self.intercabio_vista(r,"r")
         else:
             messagebox.showerror("Registro","Registro incorrecto, equipo ya existe")
+    
+    def vr_bus(self,frame):
 
+        dates = self.obtener_fecha2()
+        if dates == False:
+            messagebox.showerror("Busqueda","Busqueda incorrecta, la segunda fecha no puede ser menor")
+        else:
+            valid = bereserva(dates[0],dates[1])
+            if valid == None:
+                messagebox.showwarning("Busqueda","Busqueda incorrecta, no se encontraron registros")
+            else:
+                messagebox.showinfo("Busqueda","Busqueda correcta,se encontraron registros")
+                content = Frame(frame,bg="#f3e7cc")
+                content.place(x=0,y=500,width=1200,height=300)
+                ymove = 70
+                label = Label(content, text="Fecha         Hora         Laboratorio",bg="#f3e7cc",fg="black",font=("Arial",22))
+                label.place(x=390,y=20)
+                for idx,element in enumerate(valid):
+                    if idx <= 3:
+                        text = f"{element[0]}    {element[1]}      {element[3]}"
+                        label = Label(content, text=text,bg="#f3e7cc",fg="black",font=("Arial",22))
+                        label.place(x=360,y=ymove)
+                        ymove += 50
+                    else:
+                        sg = ttk.Button(content,text="Siguiente",command=lambda:self.pasar_pagina("s",frame,valid,idx))
+                        sg.place(x=870,y=120,width=150,height=40)
+                        break
+
+    def pasar_pagina(self,action,frame,lista,idx):
+        
+
+        if action == "s":
+            valid = []
+            cont = 0
+            for idc,element in enumerate(lista):
+                if idc >= idx:
+                    valid.append(element)
+                    cont += 1
+    
+            if idx == len(lista):
+                return 
+            else:
+                content = Frame(frame,bg="#f3e7cc")
+                content.place(x=0,y=500,width=1200,height=300)
+                ymove = 70
+                label = Label(content, text="Fecha         Hora         Laboratorio",bg="#f3e7cc",fg="black",font=("Arial",22))
+                label.place(x=390,y=20)
+                for ids,element in enumerate(valid):
+                    if ids <= 3:
+                            text = f"{element[0]}    {element[1]}      {element[3]}"
+                            label = Label(content, text=text,bg="#f3e7cc",fg="black",font=("Arial",22))
+                            label.place(x=360,y=ymove)
+                            ymove += 50
+                            
+                    else:
+                        sg = ttk.Button(content,text="Siguiente",command=lambda:self.pasar_pagina("s",frame,lista,ids+idx))
+                        sg.place(x=870,y=120,width=150,height=40)
+                        break
+
+                at = ttk.Button(content,text="Atras",command=lambda:self.pasar_pagina("a",frame,lista,idx))
+                at.place(x=870,y=180,width=150,height=40)
+                
+
+        if action == "a":
+            inicio = 0
+            inicio = idx-4
+            
+            valid = lista[inicio:idx+1]
+            content = Frame(frame,bg="#f3e7cc")
+            content.place(x=0,y=500,width=1200,height=300)
+            ymove = 70
+            label = Label(content, text="Fecha         Hora         Laboratorio",bg="#f3e7cc",fg="black",font=("Arial",22))
+            label.place(x=390,y=20)
+
+            for ids,element in enumerate(valid):
+                if ids <= 3:
+                        text = f"{element[0]}    {element[1]}      {element[3]}"
+                        label = Label(content, text=text,bg="#f3e7cc",fg="black",font=("Arial",22))
+                        label.place(x=360,y=ymove)
+                        ymove += 50
+                        
+                else:
+                    break
+            sg = ttk.Button(content,text="Siguiente",command=lambda:self.pasar_pagina("s",frame,lista,idx))
+            sg.place(x=870,y=120,width=150,height=40)
+
+            if inicio > 0:
+                at = ttk.Button(content,text="Atras",command=lambda:self.pasar_pagina("a",frame,lista,inicio))
+                at.place(x=870,y=180,width=150,height=40)
+        
     def va_lab(self,num,name,cap,r):
         valid = alab(num,name,cap)
         if valid == True:
@@ -1045,6 +1166,40 @@ class Interfaz_inicio(Frame):
         volver = ttk.Button(body,text="Volver",command=lambda:self.intercabio_vista(res,"i"))
         volver.place(x=500,y=580,width=150,height=40)
 
+    def calendar(self):
+        res = Frame(self.master)
+        res.place(x=0, y=0, width=1200,height=900)
+
+        header = Frame(res, bg="green")
+        header.place(x=0,y=0,height=200,width=1200)
+
+        label = Label(header, image=self.img_header_inicio,bg="#90B000",fg="black",font=("Arial",22))
+        label.place(x=0,y=0)
+
+        body = Frame(res, bg="#f3e7cc")
+        body.place(x=0,y=200,height=300,width=1200)
+
+        label = Label(body, text="Fecha Inicio",bg="#f3e7cc",fg="black",font=("Arial",22))
+        label.place(x=380,y=20)
+
+        self.cal1 = Calendar(body, selectmode = 'day', year = 2022, month = 10, day = 11) 
+        self.cal1.place(x=320,y=60)
+
+        label = Label(body, text="Fecha Final",bg="#f3e7cc",fg="black",font=("Arial",22))
+        label.place(x=720,y=20)
+
+        self.cal2 = Calendar(body, selectmode = 'day', year = 2022, month = 10, day = 11) 
+        self.cal2.place(x=680,y=60)
+
+        footer = Frame(res, bg="#f3e7cc")
+        footer.place(x=0,y=800,height=100,width=1200)
+        
+        buscar = ttk.Button(footer,text="Buscar",command=lambda:self.vr_bus(res))
+        buscar.place(x=600,y=20,width=150,height=40)
+
+        inicio = ttk.Button(footer,text="Volver",command=lambda: self.intercabio_vista(res,"i"))
+        inicio.place(x=420,y=20,width=150,height=40)
+
     def create_init(self):
 
         self.master.configure(bg="#90B000")
@@ -1073,7 +1228,7 @@ class Interfaz_inicio(Frame):
         reserva = ttk.Button(body,text="Reserva", command=lambda:self.intercabio_vista(inicio,"r"))
         reserva.place(x=600,y=300,width=150,height=40)
 
-        calendario = ttk.Button(body,text="Calendario")
+        calendario = ttk.Button(body,text="Calendario", command=lambda:self.intercabio_vista(inicio,"c"))
         calendario.place(x=500,y=400,width=150,height=40)
 
         cerrar = ttk.Button(body,text="Cerrar Sesión",command=self.cerrar_sesion)
