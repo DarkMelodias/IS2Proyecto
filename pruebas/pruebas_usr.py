@@ -21,4 +21,4 @@ class TestServer(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='reports',report_name='example', add_timestamp=False))
+    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='reports',report_name='Prueba_Usuarios', add_timestamp=False))
