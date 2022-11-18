@@ -11,7 +11,7 @@ equips = Equipos()
 reserva = Reservas()
 
 
-usr = ""
+usr = "admin"
 mater = 0
 equip = 0
 
