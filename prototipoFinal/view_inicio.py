@@ -86,6 +86,9 @@ class Interfaz(Frame):
 
         registro = ttk.Button(body,text="Registrar",command=lambda: self.intercabio_vista(inicio,"r"))
         registro.place(x=390,y=340,width=150,height=40)
+
+        cerrar = ttk.Button(body,text="Cerrar",command=self.master.destroy)
+        cerrar.place(x=80,y=500,width=150,height=40)
     
     def create_register(self):
         self.master.configure(bg="#90B000")
@@ -125,4 +128,7 @@ class Interfaz(Frame):
 
         inicio = ttk.Button(body,text="Inicio",command=lambda: self.intercabio_vista(inicio,"i"))
         inicio.place(x=390,y=410,width=150,height=40)
+
+        cerrar = ttk.Button(body,text="Cerrar",command=self.master.destroy)
+        cerrar.place(x=80,y=500,width=150,height=40)
 

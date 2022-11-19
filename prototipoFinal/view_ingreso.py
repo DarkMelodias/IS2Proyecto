@@ -49,6 +49,18 @@ class Interfaz_inicio(Frame):
         else:
             return "break"
 
+    def is_digit(self,text):
+        return text.isdigit()
+
+    def is_alpha(self,text):
+        return text.isalpha() or text.isspace()
+
+    def is_alnum(self,text):
+        return text.isalnum() or text.isspace()
+
+    def is_decimal(self,text):
+        return text.isdecimal() or "." in text
+
     def obtener_fecha(self): 
         dat = self.cal.get_date()
         dat = dat.split("/")
@@ -83,12 +95,6 @@ class Interfaz_inicio(Frame):
             if int(dat2[1]) < int(dat[1]):
                 return False
             return ls
-
-        
-
-        
-
-        
 
     def llenaEntryMateriales(self,mat):
         gd_mat(mat)
@@ -372,19 +378,19 @@ class Interfaz_inicio(Frame):
         label = Label(body, text="Numero Laboratorio",bg="#f3e7cc",fg="black",font=("Arial",22))
         label.place(x=418,y=160)
 
-        etr_num = ttk.Entry(body,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
+        etr_num = ttk.Entry(body,width=20,font=font.Font(family="Arial",size=18),justify=CENTER, validate="key", validatecommand=(lab.register(self.is_digit), "%S"))
         etr_num.place(x=420,y=230)
 
         label = Label(body, text="Nombre Laboratorio",bg="#f3e7cc",fg="black",font=("Arial",22))
         label.place(x=418,y=290)
 
-        etr_name = ttk.Entry(body,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
+        etr_name = ttk.Entry(body,width=20,font=font.Font(family="Arial",size=18),justify=CENTER, validate="key", validatecommand=(lab.register(self.is_alnum), "%S"))
         etr_name.place(x=420,y=350)
 
         label = Label(body, text="Capacidad",bg="#f3e7cc",fg="black",font=("Arial",22))
         label.place(x=480,y=410)
 
-        etr_cap = ttk.Entry(body,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
+        etr_cap = ttk.Entry(body,width=20,font=font.Font(family="Arial",size=18),justify=CENTER, validate="key", validatecommand=(lab.register(self.is_digit), "%S"))
         etr_cap.place(x=420,y=470)
 
         registrar = ttk.Button(body,text="Registrar",command=lambda: self.vr_lab(etr_num.get(),etr_name.get(),etr_cap.get(),lab))
@@ -412,19 +418,19 @@ class Interfaz_inicio(Frame):
         label = Label(body, text="Codigo Material",bg="#f3e7cc",fg="black",font=("Arial",22))
         label.place(x=418,y=160)
 
-        etr_num = ttk.Entry(body,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
+        etr_num = ttk.Entry(body,width=20,font=font.Font(family="Arial",size=18),justify=CENTER, validate="key", validatecommand=(mat.register(self.is_digit), "%S"))
         etr_num.place(x=420,y=230)
 
         label = Label(body, text="Nombre Material",bg="#f3e7cc",fg="black",font=("Arial",22))
         label.place(x=418,y=290)
 
-        etr_name = ttk.Entry(body,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
+        etr_name = ttk.Entry(body,width=20,font=font.Font(family="Arial",size=18),justify=CENTER, validate="key", validatecommand=(mat.register(self.is_alpha), "%S"))
         etr_name.place(x=420,y=350)
 
         label = Label(body, text="Cantidad",bg="#f3e7cc",fg="black",font=("Arial",22))
         label.place(x=480,y=410)
 
-        etr_cap = ttk.Entry(body,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
+        etr_cap = ttk.Entry(body,width=20,font=font.Font(family="Arial",size=18),justify=CENTER, validate="key", validatecommand=(mat.register(self.is_decimal), "%S"))
         etr_cap.place(x=420,y=470)
 
         registrar = ttk.Button(body,text="Registrar",command=lambda: self.vr_mat(etr_num.get(),etr_name.get(),etr_cap.get(),mat))
@@ -452,25 +458,25 @@ class Interfaz_inicio(Frame):
         label = Label(body, text="Codigo Equipos",bg="#f3e7cc",fg="black",font=("Arial",22))
         label.place(x=448,y=90)
 
-        etr_num = ttk.Entry(body,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
+        etr_num = ttk.Entry(body,width=20,font=font.Font(family="Arial",size=18),justify=CENTER, validate="key", validatecommand=(equip.register(self.is_digit), "%S"))
         etr_num.place(x=420,y=160)
 
         label = Label(body, text="Nombre Equipos",bg="#f3e7cc",fg="black",font=("Arial",22))
         label.place(x=448,y=220)
 
-        etr_name = ttk.Entry(body,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
+        etr_name = ttk.Entry(body,width=20,font=font.Font(family="Arial",size=18),justify=CENTER, validate="key", validatecommand=(equip.register(self.is_alpha), "%S"))
         etr_name.place(x=420,y=280)
 
         label = Label(body, text="Cantidad",bg="#f3e7cc",fg="black",font=("Arial",22))
         label.place(x=495,y=340)
 
-        etr_cap = ttk.Entry(body,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
+        etr_cap = ttk.Entry(body,width=20,font=font.Font(family="Arial",size=18),justify=CENTER, validate="key", validatecommand=(equip.register(self.is_digit), "%S"))
         etr_cap.place(x=420,y=400)
 
         label = Label(body, text="Estado",bg="#f3e7cc",fg="black",font=("Arial",22))
         label.place(x=505,y=460)
 
-        etr_est = ttk.Entry(body,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
+        etr_est = ttk.Entry(body,width=20,font=font.Font(family="Arial",size=18),justify=CENTER, validate="key", validatecommand=(equip.register(self.is_alnum), "%S"))
         etr_est.place(x=420,y=520)
 
         registrar = ttk.Button(body,text="Registrar",command=lambda: self.vr_equip(etr_num.get(),etr_name.get(),etr_cap.get(),etr_est.get(),equip))
@@ -577,14 +583,14 @@ class Interfaz_inicio(Frame):
             label = Label(bodyR, text="Nombre Laboratorio",bg="#f3e7cc",fg="black",font=("Arial",22))
             label.place(x=318,y=290)
 
-            etr_name = ttk.Entry(bodyR,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
+            etr_name = ttk.Entry(bodyR,width=20,font=font.Font(family="Arial",size=18),justify=CENTER, validate="key", validatecommand=(bodyR.register(self.is_alnum), "%S"))
             etr_name.insert(0,datos[1])
             etr_name.place(x=320,y=350)
 
             label = Label(bodyR, text="Capacidad",bg="#f3e7cc",fg="black",font=("Arial",22))
             label.place(x=380,y=410)
 
-            etr_cap = ttk.Entry(bodyR,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
+            etr_cap = ttk.Entry(bodyR,width=20,font=font.Font(family="Arial",size=18),justify=CENTER, validate="key", validatecommand=(bodyR.register(self.is_digit), "%S"))
             etr_cap.insert(0,datos[2])
             etr_cap.place(x=320,y=470)
 
@@ -617,14 +623,14 @@ class Interfaz_inicio(Frame):
             label = Label(bodyR, text="Nombre Material",bg="#f3e7cc",fg="black",font=("Arial",22))
             label.place(x=318,y=290)
 
-            etr_name = ttk.Entry(bodyR,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
+            etr_name = ttk.Entry(bodyR,width=20,font=font.Font(family="Arial",size=18),justify=CENTER, validate="key", validatecommand=(bodyR.register(self.is_alpha), "%S"))
             etr_name.insert(0,datos[1])
             etr_name.place(x=320,y=350)
 
             label = Label(bodyR, text="Cantidad",bg="#f3e7cc",fg="black",font=("Arial",22))
             label.place(x=380,y=410)
 
-            etr_cap = ttk.Entry(bodyR,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
+            etr_cap = ttk.Entry(bodyR,width=20,font=font.Font(family="Arial",size=18),justify=CENTER, validate="key", validatecommand=(bodyR.register(self.is_decimal), "%S"))
             etr_cap.insert(0,datos[2])
             etr_cap.place(x=320,y=470)
 
@@ -657,21 +663,21 @@ class Interfaz_inicio(Frame):
             label = Label(bodyR, text="Nombre Equipos",bg="#f3e7cc",fg="black",font=("Arial",22))
             label.place(x=348,y=220)
 
-            etr_name = ttk.Entry(bodyR,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
+            etr_name = ttk.Entry(bodyR,width=20,font=font.Font(family="Arial",size=18),justify=CENTER, validate="key", validatecommand=(bodyR.register(self.is_alpha), "%S"))
             etr_name.insert(0,datos[1])
             etr_name.place(x=320,y=280)
 
             label = Label(bodyR, text="Cantidad",bg="#f3e7cc",fg="black",font=("Arial",22))
             label.place(x=395,y=340)
 
-            etr_cap = ttk.Entry(bodyR,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
+            etr_cap = ttk.Entry(bodyR,width=20,font=font.Font(family="Arial",size=18),justify=CENTER, validate="key", validatecommand=(bodyR.register(self.is_digit), "%S"))
             etr_cap.insert(0,datos[2])
             etr_cap.place(x=320,y=400)
 
             label = Label(bodyR, text="Estado",bg="#f3e7cc",fg="black",font=("Arial",22))
             label.place(x=305,y=460)
 
-            etr_est = ttk.Entry(bodyR,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
+            etr_est = ttk.Entry(bodyR,width=20,font=font.Font(family="Arial",size=18),justify=CENTER, validate="key", validatecommand=(bodyR.register(self.is_alnum), "%S"))
             etr_est.insert(0,datos[3])
             etr_est.place(x=320,y=520)
 
@@ -712,7 +718,7 @@ class Interfaz_inicio(Frame):
             label = Label(bodyR, text="Capacidad",bg="#f3e7cc",fg="black",font=("Arial",22))
             label.place(x=380,y=410)
 
-            etr_cap = ttk.Entry(bodyR,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
+            etr_cap = ttk.Entry(bodyR,width=20,font=font.Font(family="Arial",size=18),justify=CENTER, validate="key", validatecommand=(bodyR.register(self.is_digit), "%S"))
             etr_cap.insert(0,datos[2])
             etr_cap.config(state=tk.DISABLED)
             etr_cap.place(x=320,y=470)
@@ -878,7 +884,7 @@ class Interfaz_inicio(Frame):
         label = Label(bodyL, text="Numero Laboratorio",bg="#f3e7cc",fg="black",font=("Arial",22))
         label.place(x=76,y=160)
 
-        etr_num = ttk.Entry(bodyL,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
+        etr_num = ttk.Entry(bodyL,width=20,font=font.Font(family="Arial",size=18),justify=CENTER, validate="key", validatecommand=(lab.register(self.is_digit), "%S"))
         etr_num.place(x=70,y=230)
 
         busqueda = ttk.Button(bodyL,text="Buscar",command=lambda: self.vb_lab(etr_num.get(),lab))
@@ -906,7 +912,7 @@ class Interfaz_inicio(Frame):
         label = Label(bodyL, text="Codigo Material",bg="#f3e7cc",fg="black",font=("Arial",22))
         label.place(x=76,y=160)
 
-        etr_num = ttk.Entry(bodyL,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
+        etr_num = ttk.Entry(bodyL,width=20,font=font.Font(family="Arial",size=18),justify=CENTER, validate="key", validatecommand=(mat.register(self.is_digit), "%S"))
         etr_num.place(x=70,y=230)
 
         busqueda = ttk.Button(bodyL,text="Buscar",command=lambda: self.vb_mat(etr_num.get(),mat))
@@ -934,7 +940,7 @@ class Interfaz_inicio(Frame):
         label = Label(bodyL, text="Codigo Equipo",bg="#f3e7cc",fg="black",font=("Arial",22))
         label.place(x=76,y=160)
 
-        etr_num = ttk.Entry(bodyL,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
+        etr_num = ttk.Entry(bodyL,width=20,font=font.Font(family="Arial",size=18),justify=CENTER, validate="key", validatecommand=(equip.register(self.is_digit), "%S"))
         etr_num.place(x=70,y=230)
 
         busqueda = ttk.Button(bodyL,text="Buscar",command=lambda: self.vb_equip(etr_num.get(),equip))
@@ -962,7 +968,7 @@ class Interfaz_inicio(Frame):
         label = Label(bodyL, text="Numero Laboratorio",bg="#f3e7cc",fg="black",font=("Arial",22))
         label.place(x=76,y=160)
 
-        etr_num = ttk.Entry(bodyL,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
+        etr_num = ttk.Entry(bodyL,width=20,font=font.Font(family="Arial",size=18),justify=CENTER, validate="key", validatecommand=(lab.register(self.is_digit), "%S"))
         etr_num.place(x=70,y=230)
 
         busqueda = ttk.Button(bodyL,text="Buscar",command=lambda: self.vbe_lab(etr_num.get(),lab))
@@ -990,7 +996,7 @@ class Interfaz_inicio(Frame):
         label = Label(bodyL, text="Codigo Material",bg="#f3e7cc",fg="black",font=("Arial",22))
         label.place(x=76,y=160)
 
-        etr_num = ttk.Entry(bodyL,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
+        etr_num = ttk.Entry(bodyL,width=20,font=font.Font(family="Arial",size=18),justify=CENTER, validate="key", validatecommand=(mat.register(self.is_digit), "%S"))
         etr_num.place(x=70,y=230)
 
         busqueda = ttk.Button(bodyL,text="Buscar",command=lambda: self.vbe_mat(etr_num.get(),mat))
@@ -1018,7 +1024,7 @@ class Interfaz_inicio(Frame):
         label = Label(bodyL, text="Codigo Equipo",bg="#f3e7cc",fg="black",font=("Arial",22))
         label.place(x=76,y=160)
 
-        etr_num = ttk.Entry(bodyL,width=20,font=font.Font(family="Arial",size=18),justify=CENTER)
+        etr_num = ttk.Entry(bodyL,width=20,font=font.Font(family="Arial",size=18),justify=CENTER, validate="key", validatecommand=(equip.register(self.is_digit), "%S"))
         etr_num.place(x=70,y=230)
 
         busqueda = ttk.Button(bodyL,text="Buscar",command=lambda: self.vbe_equip(etr_num.get(),equip))
